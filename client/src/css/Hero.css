@@ -1,0 +1,178 @@
+/* ---------- hero ---------- */
+.hero {
+  background: radial-gradient(1000px 500px at 80% -10%, var(--navy-700), var(--navy-900));
+  color: #fff;
+  padding: 4.5rem 0 4rem;
+  overflow: hidden;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(245, 166, 35, 0.15);
+  border: 1px solid rgba(245, 166, 35, 0.5);
+  color: var(--amber-400);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.9rem;
+  font-weight: 800;
+}
+
+.hero h1 .accent {
+  color: var(--amber-400);
+}
+
+.hero-copy p {
+  color: #b9c6da;
+  font-size: 1.1rem;
+  max-width: 34rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin: 1.6rem 0 2.2rem;
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.hero-stats div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-stats strong {
+  font-size: 1.6rem;
+  color: var(--amber-400);
+}
+
+.hero-stats span {
+  color: #8fa0b8;
+  font-size: 0.9rem;
+}
+
+.hero-art {
+  display: flex;
+  justify-content: center;
+  color: var(--amber-400);
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+}
+
+.drone-svg {
+  width: min(340px, 100%);
+  height: auto;
+  animation: float 5s ease-in-out infinite;
+}
+
+.hero-art:hover .drone-svg {
+  filter: drop-shadow(0 0 16px rgba(245, 166, 35, 0.45));
+}
+
+.drone-svg .shadow {
+  fill: rgba(0, 0, 0, 0.35);
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: shadowPulse 5s ease-in-out infinite;
+}
+
+.drone-svg .body-fill {
+  fill: rgba(245, 166, 35, 0.25);
+}
+
+.drone-svg .guard {
+  opacity: 0.55;
+}
+
+.drone-svg .rotor {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: spin 0.45s linear infinite;
+}
+
+.drone-svg .rotor-rev {
+  animation-direction: reverse;
+}
+
+/* Hovering the drone spins the rotors faster — like throttling up */
+.hero-art:hover .rotor {
+  animation-duration: 0.12s;
+}
+
+.drone-svg .signal path {
+  opacity: 0.7;
+  animation: ping 2s ease-in-out infinite;
+}
+
+.drone-svg .signal path:nth-child(2) {
+  animation-delay: 0.35s;
+}
+
+.drone-svg .led {
+  fill: #ff5a5a;
+  stroke: none;
+  animation: ledBlink 1.6s steps(2, start) infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shadowPulse {
+  0%, 100% { transform: scaleX(1); opacity: 0.35; }
+  50% { transform: scaleX(0.8); opacity: 0.2; }
+}
+
+@keyframes ping {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes ledBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drone-svg,
+  .drone-svg .rotor,
+  .drone-svg .shadow,
+  .drone-svg .signal path,
+  .drone-svg .led { animation: none; }
+  .hero-art { transition: none; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero-art { order: -1; }
+  .drone-svg { width: min(260px, 80%); }
+}
+
+@media (max-width: 640px) {
+  .hero-stats { gap: 1.4rem; }
+}
